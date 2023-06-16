@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -26,7 +28,15 @@ func main() {
 		w.Write(res)
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	domain := fmt.Sprintf(":%v", port)
+
+	log.Println("server running on", domain)
+	if err := http.ListenAndServe(domain, nil); err != nil {
 		log.Fatal(err)
 	}
 }
