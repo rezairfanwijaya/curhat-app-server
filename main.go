@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	_, err := connection.NewConnection()
+	_, err := connection.NewConnection(".env")
 	if err != nil {
 		log.Fatal(err)
 	}
