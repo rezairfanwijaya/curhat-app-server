@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fly/connection"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,6 +11,11 @@ import (
 )
 
 func main() {
+	_, err := connection.NewConnection()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	router := gin.Default()
 	router.GET("/", home)
 	router.GET("/users", users)
