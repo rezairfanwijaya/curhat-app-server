@@ -21,19 +21,19 @@ func NewConnection(envPath string) (*gorm.DB, error) {
 	databaseName := env["DATABASE_NAME"]
 
 	if username == "" {
-		os.Getenv("DATABASE_USERNAME")
+		os.Getenv("MYSQLUSER")
 	}
 	if password == "" {
-		os.Getenv("DATABASE_PASSWORD")
+		os.Getenv("MYSQLPASSWORD")
 	}
 	if host == "" {
-		os.Getenv("DATABASE_HOST")
+		os.Getenv("MYSQLHOST")
 	}
 	if port == "" {
-		os.Getenv("DATABASE_PORT")
+		os.Getenv("MYSQLPORT")
 	}
 	if databaseName == "" {
-		os.Getenv("DATABASE_NAME")
+		os.Getenv("MYSQLDATABASE")
 	}
 
 	dsn := fmt.Sprintf(
