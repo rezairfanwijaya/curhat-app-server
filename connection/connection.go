@@ -52,11 +52,7 @@ func NewConnection(envPath string) (*gorm.DB, error) {
 		return db, err
 	}
 
-	if err := db.AutoMigrate(&user.Users{}); err != nil {
-		return db, err
-	}
-
-	if err := MigrationUser(db); err != nil {
+	if err := db.AutoMigrate(&user.User{}); err != nil {
 		return db, err
 	}
 
