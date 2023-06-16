@@ -25,6 +25,8 @@ func main() {
 	router.POST("/user/create", userHandler.Create)
 	router.GET("/user/:email", userHandler.GetByEmail)
 	router.GET("/user/all", userHandler.GetAll)
+	router.PUT("/user/update/:id", userHandler.Update)
+	router.DELETE("/user/delete/:id", userHandler.Delete)
 
 	port := os.Getenv("PORT")
 	if port == "" {
