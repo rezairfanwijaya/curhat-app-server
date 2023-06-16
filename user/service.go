@@ -55,19 +55,15 @@ func (s *service) Update(input InputNewUser, id int) (User, int, error) {
 		return userByID, http.StatusBadRequest, fmt.Errorf("user dengan id %v tidak terdaftar", id)
 	}
 
-	userByEmail, err := s.repoUser.FindByEmail(input.Email)
-	if err != nil {
-		return userByEmail, http.StatusInternalServerError, err
+	if userByID.Email == input.Email {
+		return userByID, http.StatusBadRequest, fmt.Errorf("user dengan email %v sudah terdaftar", input.Email)
+
 	}
 
-	if userByEmail.ID != 0 {
-		return userByEmail, http.StatusBadRequest, fmt.Errorf("user dengan email %v sudah terdaftar", input.Email)
-	}
+	userByID.Email = input.Email
+	userByID.Password = input.Password
 
-	userByEmail.Email = input.Email
-	userByEmail.Password = input.Password
-
-	userUpdated, err := s.repoUser.Update(userByEmail)
+	userUpdated, err := s.repoUser.Update(userByID)
 	if err != nil {
 		return userUpdated, http.StatusInternalServerError, err
 	}
