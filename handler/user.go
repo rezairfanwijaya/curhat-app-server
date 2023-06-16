@@ -77,3 +77,26 @@ func (h *handerUser) GetByEmail(c *gin.Context) {
 
 	c.JSON(httpCode, response)
 }
+
+func (h *handerUser) GetAll(c *gin.Context) {
+	users, httpCode, err := h.serviceUser.GetAll()
+	if err != nil {
+		response := helper.GenerateResponseAPI(
+			httpCode,
+			"error",
+			err.Error(),
+		)
+
+		c.JSON(httpCode, response)
+		return
+	}
+
+	usersFormatted := user.FormatterUsers(users)
+	response := helper.GenerateResponseAPI(
+		httpCode,
+		"success",
+		usersFormatted,
+	)
+
+	c.JSON(httpCode, response)
+}

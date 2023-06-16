@@ -24,6 +24,7 @@ func main() {
 	router := gin.Default()
 	router.POST("/user/create", userHandler.Create)
 	router.GET("/user/:email", userHandler.GetByEmail)
+	router.GET("/user/all", userHandler.GetAll)
 
 	port := os.Getenv("PORT")
 	if port == "" {
