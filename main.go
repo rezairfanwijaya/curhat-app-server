@@ -10,6 +10,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("endpoint / hit with status 200OK")
 		response := struct {
 			Status  string `json:"status"`
 			Code    int    `json:"code"`
