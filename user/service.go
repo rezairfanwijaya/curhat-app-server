@@ -62,6 +62,8 @@ func (s *service) Update(input InputNewUser, id int) (User, int, error) {
 
 	userByID.Email = input.Email
 	userByID.Password = input.Password
+	userByID.Role = "user"
+	userByID.ID = id
 
 	userUpdated, err := s.repoUser.Update(userByID)
 	if err != nil {
