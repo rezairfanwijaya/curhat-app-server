@@ -1,7 +1,7 @@
 package connection
 
 import (
-	"fly/user"
+	"fly/note"
 	"fmt"
 	"log"
 	"os"
@@ -52,7 +52,7 @@ func NewConnection(envPath string) (*gorm.DB, error) {
 		return db, err
 	}
 
-	if err := db.AutoMigrate(&user.User{}); err != nil {
+	if err := db.AutoMigrate(&note.Note{}); err != nil {
 		return db, err
 	}
 
